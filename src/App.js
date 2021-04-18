@@ -1,25 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import Wrapper from "./Editor/container";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  localStorage.setItem("language", "c");
+    return (
+      <div className="App">
+        <Wrapper />
+        <span id="text_width_finder"></span>
+      </div>
+    );
 }
 
 export default App;

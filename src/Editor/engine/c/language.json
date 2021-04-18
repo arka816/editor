@@ -1,0 +1,8 @@
+{
+    "datatypes": ["int", "float", "double", "char", "auto", "void"],
+    "qualifiers": ["long", "short", "signed", "unsigned"],
+    "keywords": ["for", "if", "else", "switch", "return", "goto", "register", "do", "while", "break", "continue", "struct", "enum", "union", "static", "case", "default", "sizeof", "typedef", "volatile", "extern"],
+    "operators": ["+", "-", "*", "/", "%", "=", "==", "++", "--", "+=", "-=", "*=", "/=", ">", "<", ">=", "<=", "!=", ">>", "<<", ">>=", "<<=", "~", "!", "&", "|", "^", "&=", "|=", "^=", "~=", "?", ":"],
+    "punctuators": [",", ".", ";", "->", "#", "(", ")", "{", "}", "[", "]", "..."],
+    "escapeseqeunce": ["\n", "\r", "\t", "\b", "\\a", "\\'", "\"", "\\?", "\\", "\f", "\\v", "\\0", "\\nnn", "\\xhh"]
+}
