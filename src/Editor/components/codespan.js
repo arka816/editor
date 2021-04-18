@@ -21,7 +21,8 @@ const CodeSpan = ({code, category, line, index}) => {
         multi_line_comment_start: "#1e9104",
         multi_line_comment_end: "#1e9104",
         indentation_guide_1: "transparent",
-        indentation_guide_2: "transparent"
+        indentation_guide_2: "transparent",
+        lib_func: "#66D9E2"
     };
 
     var color = colorCode[category];

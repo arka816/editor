@@ -5,7 +5,7 @@ const operators = ["+", "-", "*", "/", "%", "=", "==", "++", "--", "+=", "-=", "
 const punctuators = [",", ".", ";", "->", "#", "(", ")", "{", "}", "[", "]", "...", "\"", "'"];
 //const escapeseq = ["\n", "\r", "\t", "\b", "\\a", "\\'", "\"", "\\?", "\\", "\f", "\\v", "\\0", "\\nnn", "\\xhh"];
 //const comments = ["//", "*/", "/*"];
-//const libraryFunctions = ["printf", "scanf", ""]
+const libraryFunctions = ["printf", "scanf", ""]
 
 var tokens = [];
 
@@ -80,6 +80,7 @@ const classifyToken = (code) => {
             else if(code.substring(code.length - 2, 2) === "*/") return "multi_line_comment_end";
 
             if(checkIdentifier(code)){
+                if(libraryFunctions.includes(code)) return "lib_func";
                 return "identifier";
             }
             else{
