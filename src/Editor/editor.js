@@ -5,6 +5,19 @@ import Container from './state/state.js';
 import CodeInput from "./components/codeinput.js";
 import "../css/editor.css";
 
+function objectToArray(p){
+    var keys = Object.keys(p);
+    keys.sort(function(a, b) {
+        return a - b;
+    });
+
+    var arr = [];
+    for (var i = 0; i < keys.length; i++) {
+        arr.push(p[keys[i]]);
+    }
+    return arr;
+}
+
 const initiateState = (Store) => {
     var offsetArray, contentArray, tokenArray;
 
@@ -15,7 +28,7 @@ const initiateState = (Store) => {
         localStorage.setItem("contentArray", JSON.stringify(contentArray));
     }
     else{
-        Store.setLineCount(JSON.parse(localStorage.getItem("contentArray")).length)
+        Store.setLineCount(Object.keys(JSON.parse(localStorage.getItem("contentArray"))).length)
     }
     if(localStorage.getItem("tokenArray") === null){
         tokenArray = Array.from({length: Store.lineCount}, (_, i) => []);
@@ -25,8 +38,8 @@ const initiateState = (Store) => {
     contentArray = JSON.parse(localStorage.getItem("contentArray"));
     tokenArray = JSON.parse(localStorage.getItem("tokenArray"));
 
-    Store.setContentArray(contentArray);
-    Store.setTokenArray(tokenArray);
+    Store.setContentArray(objectToArray(contentArray));
+    Store.setTokenArray(objectToArray(tokenArray));
 }
 
 

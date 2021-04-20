@@ -5,6 +5,7 @@ class Node{
 		this.left = null
 		this.right = null
 		this.equal =null
+		this.type = null
 	}
 }
 
@@ -15,7 +16,7 @@ class TST{
 		this.vol = 0
 	}
 
-	insert(word){
+	insert(word, type){
 		if(word.length === 0) return;
 		if(this.root === null) this.root = new Node(word[0]);
 		var curr = this.root, index = 0;
@@ -33,6 +34,7 @@ class TST{
 				if (index + 1 === word.length){
 					if(!curr.end) this.vol ++;
 					curr.end = true;
+					curr.type = type;
 				}
 				if(curr.equal === null){
 					if(index + 1 < word.length) curr.equal = new Node(word[index + 1])

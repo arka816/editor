@@ -77,6 +77,7 @@ const CodeInput = () => {
 
     const insertNewLine = (line, content) => {
         Store.setLineCount(Store.lineCount + 1);
+		console.log(Array.isArray(Store.contentArray));
         Store.contentArray.splice(line, 0, content);
         Store.tokenArray.splice(line, 0, tokenizer.tokenize(content));
         Store.setCursorLine(line);
@@ -84,6 +85,13 @@ const CodeInput = () => {
         Store.setCursorOffset(0);
         updateStorage();
     }
+
+	const deleteLine = (line) => {
+		Store.contentArray.splice(line, 1);
+		Store.tokenArray.splice(line, 1);
+		Store.setLineCount(Store.lineCount - 1);
+		updateStorage();
+	}
 
     const keyHandler = async (e) => {
     	var key = e.keyCode || e.charCode;
@@ -95,8 +103,51 @@ const CodeInput = () => {
     	if(key === 8){
     		// BACKSPACE
     		e.preventDefault();
-    		
+    		if(index > 0){
+				Store.setCursorIndex(index - 1);
+				Store.setCursorOffset(Store.cursorOffset - findWidthofChar(content[index - 1]))
+				content = content.slice(0, index - 1) + content.slice(index);
+				Store.contentArray[line] = content;
+				Store.tokenArray[line] = tokenizer.tokenize(content);
+				updateStorage();
+			}
+			else if(index == 0){
+				if(line > 0){
+					let prev_content = Store.contentArray[line - 1];
+					Store.contentArray[line - 1] += content;
+					Store.tokenArray[line - 1] = tokenizer.tokenize(prev_content + content);
+					Store.setCursorLine(line - 1);
+					Store.setCursorIndex(prev_content.length);
+					Store.setCursorOffset(findWidthofChar(prev_content));
+					deleteLine(line);
+				}
+			}
     	}
+		else if(key === 46){
+			// DELETE
+			e.preventDefault();
+			if(index == content.length){
+				if(line + 1 < Store.lineCount){
+					let next_content = Store.contentArray[line + 1];
+					console.log(next_content);
+					Store.contentArray[line] += next_content;
+					Store.tokenArray[line] = tokenizer.tokenize(content + next_content);
+					deleteLine(line + 1);
+				}
+			}
+			else{
+				content = content.slice(0, index) + content.slice(index + 1);
+				let contentArray = [];
+				for(let i = 0; i < Store.contentArray.length; i++){
+					contentArray.push(Store.contentArray[i]);
+				}
+				console.log(Array.isArray(contentArray));
+				contentArray[line] = content;
+				Store.tokenArray[line] = tokenizer.tokenize(content);
+				Store.setContentArray(contentArray);
+				updateStorage();
+			}
+		}
     	else if(key === 9){  
             // TAB
             e.preventDefault();
