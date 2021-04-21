@@ -3,6 +3,7 @@ const qualifiers = ["long", "short", "signed", "unsigned"];
 const keywords = ["for", "if", "else", "switch", "return", "goto", "register", "do", "while", "break", "continue", "struct", "enum", "union", "static", "case", "default", "sizeof", "typedef", "volatile", "extern"];
 const operators = ["+", "-", "*", "/", "%", "=", "==", "++", "--", "+=", "-=", "*=", "/=", ">", "<", ">=", "<=", "!=", ">>", "<<", ">>=", "<<=", "~", "!", "&", "|", "^", "&=", "|=", "^=", "~=", "?", ":", "&&", "||"];
 const punctuators = [",", ".", ";", "->", "#", "(", ")", "{", "}", "[", "]", "...", "\"", "'"];
+const preprocessor_directives = ['define', 'include', 'undef', 'ifdef', 'ifndef', 'if', 'else', 'elif', 'endif', 'error', 'pragma'];
 //const escapeseq = ["\n", "\r", "\t", "\b", "\\a", "\\'", "\"", "\\?", "\\", "\f", "\\v", "\\0", "\\nnn", "\\xhh"];
 //const comments = ["//", "*/", "/*"];
 const libraryFunctions = ["printf", "scanf", ""]
@@ -70,7 +71,10 @@ const classifyToken = (code) => {
         else{
             //symbols or identifiers
             if(operators.indexOf(code) !== -1) return "operator";
-            if(punctuators.indexOf(code) !== -1) return "punctuator";
+            if(punctuators.indexOf(code) !== -1){
+                if(code === '#') return 'operator';
+                else return "punctuator";
+            }
             
             if(code.substring(0, 2) === "//") return "single_line_comment";
             else if(code.substring(0, 2) === "/*"){
@@ -81,6 +85,7 @@ const classifyToken = (code) => {
 
             if(checkIdentifier(code)){
                 if(libraryFunctions.includes(code)) return "lib_func";
+                else if(preprocessor_directives.includes(code)) return "preproc_dir";
                 return "identifier";
             }
             else{

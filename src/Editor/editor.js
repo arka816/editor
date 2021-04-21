@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LineMarker from "./components/linemarker";
 import CodeLine from "./components/codeline.js";
 import Container from './state/state.js';
@@ -20,7 +20,7 @@ function objectToArray(p){
 }
 
 const initiateState = (Store) => {
-    var offsetArray, contentArray, tokenArray;
+    var contentArray, tokenArray;
 
     localStorage.setItem("language", "c");
 
@@ -65,7 +65,7 @@ const Editor = () => {
         if(Store.contentArray === null){
             initiateState(Store);
         }
-    }, [Store.contentArray, Store.tokenArray])
+    }, [Store, Store.contentArray, Store.tokenArray])
 
     const copyToClipboard = (e) => {
         e.preventDefault();
@@ -84,8 +84,8 @@ const Editor = () => {
                 [anchor_offset, focus_offset] = [focus_offset, anchor_offset];
             }
 
-            console.log(anchor_line, anchor_index);
-            console.log(focus_line, focus_index);
+            //console.log(anchor_line, anchor_index);
+            //console.log(focus_line, focus_index);
 
             let copiedText = "";
             copiedText += Store.tokenArray[anchor_line][anchor_index][0].slice(anchor_offset);
@@ -101,9 +101,15 @@ const Editor = () => {
                 copiedText += Store.tokenArray[focus_line][i][0];
             }
             copiedText += Store.tokenArray[focus_line][focus_index][0].slice(0, focus_offset);
-            console.log(copiedText);
+            //console.log(copiedText);
             e.clipboardData.setData('text/plain', copiedText);
         }
+    }
+
+    const verbose = () => {
+        console.log(Store.cursorIndex);
+        console.log(Store.cursorOffset);
+        console.log(Store.cursorLine);
     }
 
     const keyHandler = (e) => {
@@ -115,13 +121,11 @@ const Editor = () => {
             e.stopPropagation();
             setFindMode(true);
         }
-        if(key == 27){
+        else if(key === 27){
             // ESC
             e.preventDefault();
             e.stopPropagation();
             let highlights = document.getElementsByClassName('text_search_highlight');
-            console.log(highlights);
-            var element;
             while(highlights.length > 0){
                 highlights[0].remove();
             }
@@ -133,7 +137,7 @@ const Editor = () => {
 
             setFindMode(false);
         }
-        if(key == 83 && e.ctrlKey){
+        else if(key === 83 && e.ctrlKey){
             // Ctrl + S FOR SAVE
             e.preventDefault();
             e.stopPropagation();
@@ -142,8 +146,17 @@ const Editor = () => {
             for(line of Store.contentArray){
                 codeString += line + "\n";
             }
-
             downloadFile(codeString, "sush.c");
+        }
+        else if(key === 46 && e.ctrlKey){
+            // Ctrl + Del FOR CLEARING
+            e.preventDefault();
+            e.stopPropagation();
+            localStorage.removeItem('contentArray');
+            localStorage.removeItem('tokenArray');
+            initiateState(Store);
+            Store.setCursorLine(0);
+            Store.setCursorLine(0);
         }
     }
 
@@ -176,6 +189,7 @@ const Editor = () => {
             </div>
             <canvas id="search_overview" width="6" height="400">
             </canvas>
+            <button onClick={verbose} style={{display: "none"}}>Verbose</button>
         </div>
     )
 }

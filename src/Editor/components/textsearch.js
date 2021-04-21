@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Container from '../state/state.js';
 import SearchIcon from '@material-ui/icons/Search';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -6,21 +6,18 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import CloseIcon from '@material-ui/icons/Close';
 
 const TextSearch = ({setFindMode}) => {
-    const [found, setFound] = useState(false);
     const Store = Container.useContainer();
 
     const findWidthofChar = (c) => {
-        c = c.replace(/ /g, "&nbsp");
+        c = c.replaceAll(" ", "\u00a0");
         var elem = document.getElementById('text_width_finder');
-        elem.innerHTML = c;
+        elem.innerText = c;
         let width = elem.getBoundingClientRect().width;
         return width;
     }
 
     const close = () => {
         let highlights = document.getElementsByClassName('text_search_highlight');
-        console.log(highlights);
-        var element;
         while(highlights.length > 0){
             highlights[0].remove();
         }
@@ -34,10 +31,20 @@ const TextSearch = ({setFindMode}) => {
     }
 
     const search = () => {
+        let highlights = document.getElementsByClassName('text_search_highlight');
+        while(highlights.length > 0){
+            highlights[0].remove();
+        }
+
+        let canvas = document.getElementById('search_overview');
+        canvas.style.display="block";
+        let ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         let input = document.getElementById('text_search_input');
         let searchString = input.value;
         var l = searchString.length;
-        if (l == 0) {
+        if (l === 0) {
             return;
         }
         var i;
@@ -53,10 +60,6 @@ const TextSearch = ({setFindMode}) => {
         }
         let line;
         var w = findWidthofChar(searchString);
-
-        let canvas = document.getElementById('search_overview');
-        canvas.style.display="block";
-        let ctx = canvas.getContext('2d');
         
         ctx.beginPath();
         ctx.lineWidth = 10;

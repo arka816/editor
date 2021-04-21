@@ -22,15 +22,16 @@ const CodeSpan = ({code, category, line, index}) => {
         multi_line_comment_end: "#1e9104",
         indentation_guide_1: "transparent",
         indentation_guide_2: "transparent",
-        lib_func: "#66D9E2"
+        lib_func: "#66D9E2",
+        preproc_dir: '#F92665'
     };
 
     var color = colorCode[category];
 
     const findWidthofChar = (c) => {
-        c = c.replace(/ /g, "&nbsp");
+        c = c.replaceAll(" ", "\u00a0");
         var elem = document.getElementById('text_width_finder');
-        elem.innerHTML = c;
+        elem.innerText = c;
         let width = elem.getBoundingClientRect().width;
         return width;
     }

@@ -14,9 +14,10 @@ const CodeInput = () => {
     const [lastMovement, setLastMovement] = useState(null);
 
     const findWidthofChar = (c) => {
-        c = c.replace(/ /g, "&nbsp");
+        c = c.replaceAll(" ", "\u00a0");
+		console.log(c);
         var elem = document.getElementById('text_width_finder');
-        elem.innerHTML = c;
+        elem.innerText = c;
         let width = elem.getBoundingClientRect().width;
         return width;
     }
@@ -110,7 +111,7 @@ const CodeInput = () => {
 				Store.tokenArray[line] = tokenizer.tokenize(content);
 				updateStorage();
 			}
-			else if(index == 0){
+			else if(index === 0){
 				if(line > 0){
 					let prev_content = Store.contentArray[line - 1];
 					Store.contentArray[line - 1] += content;
@@ -125,10 +126,9 @@ const CodeInput = () => {
 		else if(key === 46){
 			// DELETE
 			e.preventDefault();
-			if(index == content.length){
+			if(index === content.length){
 				if(line + 1 < Store.lineCount){
 					let next_content = Store.contentArray[line + 1];
-					console.log(next_content);
 					Store.contentArray[line] += next_content;
 					Store.tokenArray[line] = tokenizer.tokenize(content + next_content);
 					deleteLine(line + 1);

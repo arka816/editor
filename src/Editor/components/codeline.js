@@ -5,10 +5,11 @@ import Container from '../state/state.js';
 const Codeline = ({line}) => {
     const Store = Container.useContainer();
     const findWidthofChar = (c) => {
-        c = c.replace(/ /g, "&nbsp");
+        c = c.replaceAll(" ", "\u00a0");
         var elem = document.getElementById('text_width_finder');
-        elem.innerHTML = c;
+        elem.innerText = c;
         let width = elem.getBoundingClientRect().width;
+        console.log(c, width);
         return width;
     }
     const focusLine = () => {
