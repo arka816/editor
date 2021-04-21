@@ -20,6 +20,7 @@ const Codeline = ({line}) => {
     return (
         <div 
             data-line={line}
+            id={"editor_code_line_" + line}
             className="editor_code_line" 
             style={{height: Store.lineHeight + "px", backgroundColor: line === Store.cursorLine ? "#202020" : "#272822", top: (Store.lineHeight * (line)) + "px"}}
             onClick={focusLine}

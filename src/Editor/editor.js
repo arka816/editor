@@ -1,8 +1,9 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import LineMarker from "./components/linemarker";
 import CodeLine from "./components/codeline.js";
 import Container from './state/state.js';
 import CodeInput from "./components/codeinput.js";
+import TextSearch from "./components/textsearch";
 import "../css/editor.css";
 
 function objectToArray(p){
@@ -44,6 +45,7 @@ const initiateState = (Store) => {
 
 
 const Editor = () => {
+    const [findMode, setFindMode] = useState(false);
     const Store = Container.useContainer();
     useEffect(() => {
         if(Store.contentArray === null){
@@ -90,6 +92,35 @@ const Editor = () => {
         }
     }
 
+    const keyHandler = (e) => {
+        var key = e.keyCode || e.charCode;
+
+        if(key === 70 && e.ctrlKey){
+            // Ctrl + F FIND FUNCTIONALITY
+            e.preventDefault();
+            e.stopPropagation();
+            setFindMode(true);
+        }
+        if(key == 27){
+            // ESC
+            e.preventDefault();
+            e.stopPropagation();
+            let highlights = document.getElementsByClassName('text_search_highlight');
+            console.log(highlights);
+            var element;
+            while(highlights.length > 0){
+                highlights[0].remove();
+            }
+
+            let canvas = document.getElementById('search_overview');
+            canvas.style.display="none";
+            let context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height)
+
+            setFindMode(false);
+        }
+    }
+
     var lines = Array.from({length: Store.lineCount}, (_, i) => i)
     return (
         <div className="editor_wrapper" id="editor_wrapper">
@@ -105,7 +136,8 @@ const Editor = () => {
                     )
                 })}
             </div>
-            <div className="editor_code_wrapper" onCopy={copyToClipboard}>
+            <div className="editor_code_wrapper" onCopy={copyToClipboard} onKeyDown={keyHandler}>
+                {findMode ? <TextSearch setFindMode={setFindMode} /> : ""}
                 <CodeInput />
                 {lines.map((val, index) => {
                     return (
@@ -116,6 +148,8 @@ const Editor = () => {
                     )
                 })}
             </div>
+            <canvas id="search_overview" width="6" height="400">
+            </canvas>
         </div>
     )
 }

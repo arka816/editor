@@ -77,7 +77,6 @@ const CodeInput = () => {
 
     const insertNewLine = (line, content) => {
         Store.setLineCount(Store.lineCount + 1);
-		console.log(Array.isArray(Store.contentArray));
         Store.contentArray.splice(line, 0, content);
         Store.tokenArray.splice(line, 0, tokenizer.tokenize(content));
         Store.setCursorLine(line);
@@ -141,7 +140,6 @@ const CodeInput = () => {
 				for(let i = 0; i < Store.contentArray.length; i++){
 					contentArray.push(Store.contentArray[i]);
 				}
-				console.log(Array.isArray(contentArray));
 				contentArray[line] = content;
 				Store.tokenArray[line] = tokenizer.tokenize(content);
 				Store.setContentArray(contentArray);
