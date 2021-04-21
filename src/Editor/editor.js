@@ -43,6 +43,20 @@ const initiateState = (Store) => {
     Store.setTokenArray(objectToArray(tokenArray));
 }
 
+const downloadFile = (codeString, filename) => {
+    codeString = codeString.trimRight("\n") + "\n";
+    var codeBlob = new Blob([codeString], {
+        type: "text/plain"
+    });
+    var url = URL.createObjectURL(codeBlob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
 
 const Editor = () => {
     const [findMode, setFindMode] = useState(false);
@@ -118,6 +132,18 @@ const Editor = () => {
             context.clearRect(0, 0, canvas.width, canvas.height)
 
             setFindMode(false);
+        }
+        if(key == 83 && e.ctrlKey){
+            // Ctrl + S FOR SAVE
+            e.preventDefault();
+            e.stopPropagation();
+            var codeString = "";
+            var line;
+            for(line of Store.contentArray){
+                codeString += line + "\n";
+            }
+
+            downloadFile(codeString, "sush.c");
         }
     }
 
