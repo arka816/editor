@@ -9,7 +9,6 @@ const Codeline = ({line}) => {
         var elem = document.getElementById('text_width_finder');
         elem.innerText = c;
         let width = elem.getBoundingClientRect().width;
-        console.log(c, width);
         return width;
     }
     const focusLine = () => {

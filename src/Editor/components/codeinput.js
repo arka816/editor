@@ -15,7 +15,6 @@ const CodeInput = () => {
 
     const findWidthofChar = (c) => {
         c = c.replaceAll(" ", "\u00a0");
-		console.log(c);
         var elem = document.getElementById('text_width_finder');
         elem.innerText = c;
         let width = elem.getBoundingClientRect().width;
@@ -91,6 +90,23 @@ const CodeInput = () => {
 		Store.tokenArray.splice(line, 1);
 		Store.setLineCount(Store.lineCount - 1);
 		updateStorage();
+	}
+
+	const pasteHandler = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		let paste = (e.clipboardData || window.clipboardData).getData('text');
+		let lines = paste.split("\n");
+		let l = Store.cursorLine;
+
+		Store.tokenArray[l] = tokenizer.tokenize(Store.contentArray[l] + lines[0]);
+		Store.contentArray[l] += lines[0];
+
+		for(var i = 1; i < lines.length; i++){
+			insertNewLine(l + i, lines[i]);
+		}
+		Store.setCursorIndex(lines[lines.length - 1].length);
+		Store.setCursorOffset(findWidthofChar(lines[lines.length - 1]));
 	}
 
     const keyHandler = async (e) => {
@@ -246,6 +262,7 @@ const CodeInput = () => {
             spellCheck="false"
             onInput={inputHandler}
             onKeyDown={keyHandler}
+			onPaste={pasteHandler}
         >
         </textarea>    
     )
