@@ -70,12 +70,20 @@ const findWidthofChar = (c) => {
 
 const Editor = () => {
     const [findMode, setFindMode] = useState(false);
+    const [selected, setSelected] = useState(false);
+
     const Store = Container.useContainer();
     useEffect(() => {
         if(Store.contentArray === null){
             initiateState(Store);
         }
     }, [Store, Store.contentArray, Store.tokenArray])
+
+    document.onselectionchange = () => {
+        if(window.getSelection().toString().length > 0){
+            setSelected(true);
+        }
+    }
 
     const updateStorage = () => {
     	localStorage.setItem('contentArray', JSON.stringify(Store.contentArray));
@@ -134,9 +142,6 @@ const Editor = () => {
                 [anchor_index, focus_index] = [focus_index, anchor_index];
                 [anchor_offset, focus_offset] = [focus_offset, anchor_offset];
             }
-
-            //console.log(anchor_line, anchor_index);
-            //console.log(focus_line, focus_index);
 
             let copiedText = "";
             copiedText += Store.tokenArray[anchor_line][anchor_index][0].slice(anchor_offset);
@@ -232,7 +237,11 @@ const Editor = () => {
                     )
                 })}
             </div>
-            <div className="editor_code_wrapper" onCopy={copyToClipboard} onCut={cutToClipboard} onKeyDown={keyHandler}>
+            <div className="editor_code_wrapper" 
+                onCopy={copyToClipboard} 
+                onCut={cutToClipboard} 
+                onKeyDown={keyHandler}
+            >
                 {findMode ? <TextSearch setFindMode={setFindMode} /> : ""}
                 <CodeInput />
                 {lines.map((val, index) => {
