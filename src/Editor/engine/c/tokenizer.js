@@ -16,7 +16,7 @@ const libraryFunctions = new Set([
     "isblank","iscntrl","isdigit","isgraph","islower","isprint","ispunct","isspace","isupper","iswalnum4","iswalpha4","iswblank4",
     "iswcntrl4","iswctype4","iswdigit4","iswgraph4","iswlower4","iswprint4","iswpunct4","iswspace4","iswupper4","iswxdigit4",
     "isxdigit4","j0","j1","jn","labs","ldexp","ldiv","localeconv","localtime","localtime64","localtime_r","localtime64_r","log",
-    "log10","longjmp","malloc","mblen","mbrlen4","mbrtowc4","mbsinit4","mbsrtowcs4","mbstowcs","mbtowc","memchr","memcmp","memcpy",
+    "log10","longjmp", "main", "malloc","mblen","mbrlen4","mbrtowc4","mbsinit4","mbsrtowcs4","mbstowcs","mbtowc","memchr","memcmp","memcpy",
     "memmove","memset","mktime","mktime64","modf","nextafter","nextafterl","nexttoward","nexttowardl","nl_langinfo4","perror","pow",
     "printf","putc1","putchar1","putenv","puts","putwc6","putwchar6","qsort","quantexpd32","quantexpd64","quantexpd128","quantized32",
     "quantized64","quantized128","samequantumd32","samequantumd64","samequantumd128","raise","rand","rand_r","realloc","regcomp",

@@ -68,11 +68,14 @@ const findWidthofChar = (c) => {
 }
 
 
+
+
 const Editor = () => {
     const [findMode, setFindMode] = useState(false);
     const [selected, setSelected] = useState(false);
 
     const Store = Container.useContainer();
+
     useEffect(() => {
         if(Store.contentArray === null){
             initiateState(Store);
@@ -82,36 +85,134 @@ const Editor = () => {
     document.onselectionchange = () => {
         if(window.getSelection().toString().length > 0){
             setSelected(true);
+            document.getElementById("editor_code_wrapper").focus();
         }
     }
+
 
     const updateStorage = () => {
     	localStorage.setItem('contentArray', JSON.stringify(Store.contentArray));
     	localStorage.setItem('tokenArray', JSON.stringify(Store.tokenArray));
     }
 
-    const clearSelection = (x1, y1, x2, y2) => {
-        for(let line = x1 + 1; line < x2; line++){
-            Store.contentArray.splice(line, 1);
-            Store.tokenArray.splice(line, 1);
-            Store.setLineCount(Store.lineCount - 1);
-        }
+    document.addEventListener("keydown", (e) => {
+        var key = e.keyCode || e.charCode;
+        var selection = window.getSelection();
 
+        if(selection.toString().length > 0 && Store.contentArray){
+            if(key === 46 || key === 8){
+                // BACKSPACE OR DELETE TO CLEAR SELECTION
+                let anchor_line = parseInt(selection.anchorNode.parentElement.parentElement.dataset.line);
+                let anchor_index = parseInt(selection.anchorNode.parentElement.dataset.index);
+                let anchor_offset = selection.anchorOffset;
+                let focus_line = parseInt(selection.focusNode.parentElement.parentElement.dataset.line);
+                let focus_index = parseInt(selection.focusNode.parentElement.dataset.index);
+                let focus_offset = selection.focusOffset;
+    
+    
+                let i1 = 0;
+                for(let i = 0; i < anchor_index; i++){
+                    i1 += Store.tokenArray[anchor_line][i][0].length;
+                }
+                i1 += anchor_offset;
+    
+                let i2 = 0;
+                for(let i = 0; i < focus_index; i++){
+                    i2 += Store.tokenArray[focus_line][i][0].length;
+                }
+                i2 += focus_offset;
+    
+                clearSelection(anchor_line, i1, focus_line, i2);
+                Store.setCursorLine(anchor_line);
+                Store.setCursorIndex(i1);
+                Store.setCursorOffset(findWidthofChar(Store.contentArray[anchor_line].slice(0, i1)));
+                e.stopImmediatePropagation();
+            }
+            else if(key === 9){
+                if(e.shiftKey){
+                    console.log("shift tab")
+                    // Shift + Tab TO BACK INDENT SELECTION
+                    let anchor_line = parseInt(selection.anchorNode.parentElement.parentElement.dataset.line);
+                    let focus_line = parseInt(selection.focusNode.parentElement.parentElement.dataset.line);
+                    let focus_index = parseInt(selection.focusNode.parentElement.dataset.index);
+                    let focus_offset = selection.focusOffset;
+    
+                    let i2 = 0;
+                    for(let i = 0; i < focus_index; i++){
+                        i2 += Store.tokenArray[focus_line][i][0].length;
+                    }
+                    i2 += focus_offset;
+
+                    var content, count, s, l;
+
+                    for(let line = anchor_line; line <= focus_line; line++){
+                        content = Store.contentArray[line];
+                        l = content.length;
+                        content = content.trimLeft();
+                        count = (l - content.length);
+                        if(count % Store.tabWidth === 0) count -= 4;
+                        else count = count - (count % Store.tabWidth);
+                        s = " ".repeat(count);
+                        console.log(count);
+                        Store.tokenArray[line] = tokenizer.tokenize(s + content);
+                        Store.contentArray[line] = s + content;
+                    }
+    
+                    Store.setCursorLine(focus_line);
+                    i2 -= (l - content.length);
+                    Store.setCursorIndex(i2);
+                    Store.setCursorOffset(findWidthofChar(Store.contentArray[focus_line].slice(0, i2)));
+                }
+                else{
+                    // Tab TO INDENT SELECTION
+                    let anchor_line = parseInt(selection.anchorNode.parentElement.parentElement.dataset.line);
+                    let focus_line = parseInt(selection.focusNode.parentElement.parentElement.dataset.line);
+                    let focus_index = parseInt(selection.focusNode.parentElement.dataset.index);
+                    let focus_offset = selection.focusOffset;
+    
+                    let i2 = 0;
+                    for(let i = 0; i < focus_index; i++){
+                        i2 += Store.tokenArray[focus_line][i][0].length;
+                    }
+                    i2 += focus_offset;
+    
+                    let s = " ".repeat(Store.tabWidth);
+                    for(let line = anchor_line; line <= focus_line; line++){
+                        Store.tokenArray[line] = tokenizer.tokenize(s + Store.contentArray[line]);
+                        Store.contentArray[line] = s + Store.contentArray[line];
+                    }
+
+                    console.log(Store.contentArray[focus_line], focus_line);
+    
+                    Store.setCursorLine(focus_line);
+                    Store.setCursorIndex(i2 + Store.tabWidth);
+                    Store.setCursorOffset(findWidthofChar(s + Store.contentArray[focus_line].slice(0, i2)));
+                }
+                if (window.getSelection().empty) {  
+                    // Chrome
+                    window.getSelection().empty();
+                } else if (window.getSelection().removeAllRanges) {  
+                    // Firefox
+                    window.getSelection().removeAllRanges();
+                }
+        
+                updateStorage();
+                e.stopImmediatePropagation();
+            }
+        }
+    })
+
+    const clearSelection = (x1, y1, x2, y2) => {
         let c1 = Store.contentArray[x1].slice(0, y1);
         let c2 = Store.contentArray[x2].slice(y2);
+
+        Store.contentArray.splice(x1+1, x2 - x1);
+        Store.tokenArray.splice(x1+1, x2 - x1);
+        Store.setLineCount(Store.lineCount - x2 + x1);
+
         Store.contentArray[x1] = c1 + c2;
         Store.tokenArray[x1] = tokenizer.tokenize(c1 + c2);
 
-        Store.contentArray.splice(x2, 1);
-        Store.tokenArray.splice(x2, 1);
-        Store.setLineCount(Store.lineCount - 1);
-
-        updateStorage();
-    }
-
-    const cutToClipboard = (e) => {
-        const [anchor_line, anchor_content_index, focus_line, focus_content_index] = copyToClipboard(e);
-        clearSelection(anchor_line, anchor_content_index, focus_line, focus_content_index);
         if (window.getSelection().empty) {  
             // Chrome
             window.getSelection().empty();
@@ -119,6 +220,13 @@ const Editor = () => {
             // Firefox
             window.getSelection().removeAllRanges();
         }
+
+        updateStorage();
+    }
+
+    const cutToClipboard = (e) => {
+        const [anchor_line, anchor_content_index, focus_line, focus_content_index] = copyToClipboard(e);
+        clearSelection(anchor_line, anchor_content_index, focus_line, focus_content_index);
         Store.setCursorLine(anchor_line);
         Store.setCursorIndex(anchor_content_index);
         Store.setCursorOffset(findWidthofChar(Store.contentArray[anchor_line].slice(0, anchor_content_index)));
@@ -220,12 +328,42 @@ const Editor = () => {
             Store.setCursorLine(0);
             Store.setCursorLine(0);
         }
+        else if(key === 46 || key === 8){
+            if(selected){
+                let selection = window.getSelection();
+                let anchor_line = parseInt(selection.anchorNode.parentElement.parentElement.dataset.line);
+                let anchor_index = parseInt(selection.anchorNode.parentElement.dataset.index);
+                let anchor_offset = selection.anchorOffset;
+                let focus_line = parseInt(selection.focusNode.parentElement.parentElement.dataset.line);
+                let focus_index = parseInt(selection.focusNode.parentElement.dataset.index);
+                let focus_offset = selection.focusOffset;
+
+                let i1 = 0;
+                for(let i = 0; i < anchor_index - 1; i++){
+                    i1 += Store.tokenArray[anchor_line][i][0].length;
+                }
+                i1 += anchor_offset;
+
+                let i2 = 0;
+                for(let i = 0; i < focus_index; i++){
+                    i2 += Store.tokenArray[focus_line][i][0];
+                }
+                i2 += focus_offset;
+
+                clearSelection(anchor_line, i1, focus_line, i2);
+            }
+        }
+    }
+
+    const scrollX = (e) => {
+        let lineMarker = document.getElementById('editor_line_marker_wrapper');
+        lineMarker.style.left = e.target.scrollLeft + "px";
     }
 
     var lines = Array.from({length: Store.lineCount}, (_, i) => i)
     return (
-        <div className="editor_wrapper" id="editor_wrapper">
-            <div className="editor_line_marker_wrapper">
+        <div className="editor_wrapper" id="editor_wrapper" onScroll={scrollX}>
+            <div className="editor_line_marker_wrapper" id="editor_line_marker_wrapper">
                 {lines.map((val, index) => {
                     return (
                         <LineMarker 
@@ -237,21 +375,25 @@ const Editor = () => {
                     )
                 })}
             </div>
-            <div className="editor_code_wrapper" 
-                onCopy={copyToClipboard} 
-                onCut={cutToClipboard} 
-                onKeyDown={keyHandler}
-            >
-                {findMode ? <TextSearch setFindMode={setFindMode} /> : ""}
-                <CodeInput />
-                {lines.map((val, index) => {
-                    return (
-                        <CodeLine 
-                            key={index}
-                            line={index}
-                        />
-                    )
-                })}
+            <div className="editor_scroll_wrapper">
+                <div 
+                    id="editor_code_wrapper"
+                    className="editor_code_wrapper" 
+                    onCopy={copyToClipboard} 
+                    onCut={cutToClipboard} 
+                    onKeyDown={keyHandler}
+                >
+                    {findMode ? <TextSearch setFindMode={setFindMode} /> : ""}
+                    <CodeInput />
+                    {lines.map((val, index) => {
+                        return (
+                            <CodeLine 
+                                key={index}
+                                line={index}
+                            />
+                        )
+                    })}
+                </div>
             </div>
             <canvas id="search_overview" width="6" height="400">
             </canvas>

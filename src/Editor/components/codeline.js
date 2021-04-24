@@ -26,16 +26,19 @@ const Codeline = ({line}) => {
             onClick={focusLine}
         >
             {
-                Store.tokenArray === null ? "" : 
-                Store.tokenArray[line].map((value, index) => (
-                    <CodeSpan 
-                        key={index}
-                        index={index}
-                        code={value[0]}
-                        category={value[1]}
-                        line={line}
-                    />
-                ))
+                Store.tokenArray === null || Store.tokenArray === undefined ? "" : 
+                (
+                    Store.tokenArray[line] === null || Store.tokenArray[line] === undefined ? "" :
+                    Store.tokenArray[line].map((value, index) => (
+                        <CodeSpan 
+                            key={index}
+                            index={index}
+                            code={value[0]}
+                            category={value[1]}
+                            line={line}
+                        />
+                    ))
+                )
             }
         </div>
     )

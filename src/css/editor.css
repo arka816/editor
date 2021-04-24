@@ -1,11 +1,12 @@
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
+    height: 8px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: rgb(100, 100, 100);
 }
 :-webkit-scrollbar-track {
-    background-color: #f5f5f5;
+    background-color: transparent;
 }
 
 ::selection{
@@ -32,7 +33,10 @@ svg{
 
 .editor_line_marker_wrapper{
     display: block;
-    position: relative;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 2;
     height: 100%;
     width: 50px;
     background-color: #2F3129;
@@ -61,11 +65,24 @@ svg{
     user-select: none;
 }
 
+.editor_scroll_wrapper{
+    display: block;
+    position: absolute;
+    left: 50px;
+    top: 0px;
+    height: 100%;
+    width: 650px;
+    background-color: #272822;
+    font-family: inherit;
+    font-size: 0px;
+    cursor: text;
+}
+
 .editor_code_wrapper{
     display: block;
     position: relative;
     height: auto;
-    width: 650px;
+    min-width: 100%;
     background-color: #272822;
     font-family: inherit;
     font-size: 0px;
@@ -75,11 +92,12 @@ svg{
 .editor_code_line{
     position: absolute;
     left: 0px;
-    width: 100%;
+    min-width: 100%;
     font-family: inherit;
     font-size: 16px;
     display: inline-flex;
     cursor: text;
+    padding-right: 6px;
 }
 
 .editor_code_span{

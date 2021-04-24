@@ -27,6 +27,7 @@ const CodeInput = () => {
     }
 
     const inputHandler = (e) => {
+		e.stopPropagation();
     	let textarea = e.target;
         let newChar = textarea.value;
         textarea.value = "";
@@ -98,12 +99,17 @@ const CodeInput = () => {
 		let paste = (e.clipboardData || window.clipboardData).getData('text');
 		let lines = paste.split("\n");
 		let l = Store.cursorLine;
+		let index = Store.cursorIndex;
 
-		Store.tokenArray[l] = tokenizer.tokenize(Store.contentArray[l] + lines[0]);
-		Store.contentArray[l] += lines[0];
+		let prefix = Store.contentArray[l].slice(0, index);
+		let suffix = Store.contentArray[l].slice(index);
+
+		Store.tokenArray[l] = tokenizer.tokenize(prefix + lines[0]);
+		Store.contentArray[l] = prefix + lines[0];
 
 		for(var i = 1; i < lines.length; i++){
-			insertNewLine(l + i, lines[i]);
+			if(i === lines.length - 1) insertNewLine(l + i, lines[i] + suffix); 
+			else insertNewLine(l + i, lines[i]);
 		}
 		Store.setCursorIndex(lines[lines.length - 1].length);
 		Store.setCursorOffset(findWidthofChar(lines[lines.length - 1]));
@@ -119,6 +125,7 @@ const CodeInput = () => {
     	if(key === 8){
     		// BACKSPACE
     		e.preventDefault();
+			e.stopPropagation();
     		if(index > 0){
 				Store.setCursorIndex(index - 1);
 				Store.setCursorOffset(Store.cursorOffset - findWidthofChar(content[index - 1]))
@@ -142,6 +149,7 @@ const CodeInput = () => {
 		else if(key === 46){
 			// DELETE
 			e.preventDefault();
+			e.stopPropagation();
 			if(index === content.length){
 				if(line + 1 < Store.lineCount){
 					let next_content = Store.contentArray[line + 1];
@@ -165,6 +173,7 @@ const CodeInput = () => {
     	else if(key === 9){  
             // TAB
             e.preventDefault();
+			e.stopPropagation();
             let n = Store.tabWidth - (index % Store.tabWidth);
             let s = " ".repeat(n);
             content = content.slice(0, index) + s + content.slice(index);
@@ -186,6 +195,7 @@ const CodeInput = () => {
         }
     	else if(key === 37){
     		// LEFT ARROW
+			e.stopPropagation();
     		if(index > 0){
     			Store.setCursorIndex(index - 1);
     			Store.setCursorOffset(findWidthofChar(content.slice(0, index-1)));
@@ -202,6 +212,7 @@ const CodeInput = () => {
     	}
     	else if(key === 38){
             // 	UP ARROW
+			e.stopPropagation();
             if(line > 0){
             	if(lastMovement === 'R' || lastMovement === 'L' || lastMovement === null){
 	            	await setLastIndex(index);
@@ -216,6 +227,7 @@ const CodeInput = () => {
         }
         else if(key === 40){
             // 	DOWN ARROW
+			e.stopPropagation();
             if(line +1 < Store.lineCount){
             	if(lastMovement === 'R' || lastMovement === 'L' || lastMovement === null){
 	            	await setLastIndex(index);
@@ -230,6 +242,7 @@ const CodeInput = () => {
         }
     	else if(key === 39){
     		// RIGHT ARROW
+			e.stopPropagation();
     		if(index < content.length){
     			Store.setCursorIndex(index + 1);
     			Store.setCursorOffset(findWidthofChar(content.slice(0, index+1)));
