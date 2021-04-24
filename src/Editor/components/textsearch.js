@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import CloseIcon from '@material-ui/icons/Close';
 
-const TextSearch = ({setFindMode}) => {
+const TextSearch = () => {
     const [found, setFound] = useState(false);
     const [searchIndex, setSearchIndex] = useState(0);
     const [highlightElems, setHighlightElems] = useState([]);
@@ -32,8 +32,9 @@ const TextSearch = ({setFindMode}) => {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         setHighlightElems([]);
-
-        setFindMode(false);
+        let search = document.getElementById('text_search');
+        search.classList.remove('text_search_animation');
+        search.classList.add('text_search_animation_rev');
     }
 
     const search = () => {
@@ -69,7 +70,7 @@ const TextSearch = ({setFindMode}) => {
         
         ctx.beginPath();
         ctx.lineWidth = 10;
-        ctx.strokeStyle = "#10a115";
+        ctx.strokeStyle = "rgba(16, 161, 21, 0.5)";
 
         if(locations.length > 0) setFound(true);
         else setFound(false);
@@ -102,6 +103,7 @@ const TextSearch = ({setFindMode}) => {
     }
 
     const keyHandler = (e) => {
+        e.stopPropagation();
         var key = e.keyCode || e.charCode;
         if(key === 13){
             search();
@@ -137,7 +139,7 @@ const TextSearch = ({setFindMode}) => {
     }
 
     return (
-        <div className="text_search" onKeyDown={searchNavHandler}>
+        <div className="text_search" id="text_search" onKeyDown={searchNavHandler}>
             <div className="text_input_container">
                 <input autoFocus placeholder="Find" id="text_search_input" onKeyDown={keyHandler} />
                 <SearchIcon style={{color: "white", position: "absolute", right: "4px", width: "20px"}} onClick={search} />

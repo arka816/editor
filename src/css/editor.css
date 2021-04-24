@@ -157,13 +157,35 @@ svg{
 .text_search{
     display: block;
     position:absolute;
-    top: 0px;
+    top: -32px;
     right: 20px;
     min-width: 50%;
     height: 32px;
     background-color: #3c3d38;
     z-index: 2;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
+
+.text_search_animation{
+    animation-name: text_search_animation;
+}
+
+@keyframes text_search_animation {
+    0% {top: -32px}
+    100% {top: 0px}
+}
+
+.text_search_animation_rev{
+    animation-name: text_search_animation_rev;
+}
+
+@keyframes text_search_animation_rev {
+    0% {top: 0px}
+    100% {top: -32px}
+}
+
 .text_input_container{
     width: 60%;
     height: 26px;

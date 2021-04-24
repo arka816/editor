@@ -299,7 +299,9 @@ const Editor = () => {
             // Ctrl + F FIND FUNCTIONALITY
             e.preventDefault();
             e.stopPropagation();
-            setFindMode(true);
+            let search = document.getElementById('text_search');
+            search.classList.remove('text_search_animation_rev');
+            search.classList.add('text_search_animation');
         }
         else if(key === 27){
             // ESC
@@ -315,7 +317,9 @@ const Editor = () => {
             let context = canvas.getContext('2d');
             context.clearRect(0, 0, canvas.width, canvas.height)
 
-            setFindMode(false);
+            let search = document.getElementById('text_search');
+            search.classList.remove('text_search_animation');
+            search.classList.add('text_search_animation_rev');
         }
         else if(key === 83 && e.ctrlKey){
             // Ctrl + S FOR SAVE
@@ -393,7 +397,7 @@ const Editor = () => {
                     onCut={cutToClipboard} 
                     onKeyDown={keyHandler}
                 >
-                    {findMode ? <TextSearch setFindMode={setFindMode} /> : ""}
+                    <TextSearch />
                     <CodeInput />
                     {lines.map((val, index) => {
                         return (
