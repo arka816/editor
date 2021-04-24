@@ -1,6 +1,6 @@
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 0px;
+    height: 0px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: rgb(100, 100, 100);
@@ -36,7 +36,7 @@ svg{
     position: absolute;
     left: 0px;
     top: 0px;
-    z-index: 2;
+    z-index: 2000;
     height: 100%;
     width: 50px;
     background-color: #2F3129;
@@ -101,6 +101,7 @@ svg{
 }
 
 .editor_code_span{
+    user-select: auto;
     display: block;
     position: relative;
     width: auto;

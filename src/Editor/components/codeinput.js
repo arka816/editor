@@ -172,17 +172,22 @@ const CodeInput = () => {
 		}
     	else if(key === 9){  
             // TAB
-            e.preventDefault();
-			e.stopPropagation();
-            let n = Store.tabWidth - (index % Store.tabWidth);
-            let s = " ".repeat(n);
-            content = content.slice(0, index) + s + content.slice(index);
-            Store.setCursorIndex(index + n);
-            Store.setCursorOffset(Store.cursorOffset + findWidthofChar(s));
-            let tokens = tokenizer.tokenize(content);
-            Store.contentArray[Store.cursorLine] = content;
-    		Store.tokenArray[Store.cursorLine] = tokens;
-    		updateStorage();
+            if(e.shiftKey){
+
+			}
+			else{
+				e.preventDefault();
+				e.stopPropagation();
+				let n = Store.tabWidth - (index % Store.tabWidth);
+				let s = " ".repeat(n);
+				content = content.slice(0, index) + s + content.slice(index);
+				Store.setCursorIndex(index + n);
+				Store.setCursorOffset(Store.cursorOffset + findWidthofChar(s));
+				let tokens = tokenizer.tokenize(content);
+				Store.contentArray[Store.cursorLine] = content;
+				Store.tokenArray[Store.cursorLine] = tokens;
+				updateStorage();
+			}
         }
         else if(key === 13){
         	// ENTER
