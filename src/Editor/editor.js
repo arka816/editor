@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import LineMarker from "./components/linemarker";
-import CodeLine from "./components/codeline.js";
+import LineMarker from "./components/linemarker.jsx";
+import CodeLine from "./components/codeline.jsx";
 import Container from './state/state.js';
-import CodeInput from "./components/codeinput.js";
-import TextSearch from "./components/textsearch";
+import CodeInput from "./components/codeinput.jsx";
+import TextSearch from "./components/textsearch.jsx";
+import Suggestion from "./components/suggestion.jsx";
+import TST from "./suggestion-engine/tst";
 import "../css/editor.css";
 var language = localStorage.getItem("language") || 'c';
-const tokenizer = require("./engine/" + language + "/tokenizer.js");
+const tokenizer = require(`./engine/${language}/tokenizer.js`);
+const vocabulary = require(`./engine/${language}/language.json`);
+
 
 function objectToArray(p){
     var keys = Object.keys(p);
@@ -71,8 +75,8 @@ const findWidthofChar = (c) => {
 
 
 const Editor = () => {
-    const [findMode, setFindMode] = useState(false);
     const [selected, setSelected] = useState(false);
+    const [suggestions, setSuggestions] = useState([]);
 
     const Store = Container.useContainer();
 
@@ -80,12 +84,26 @@ const Editor = () => {
         if(Store.contentArray === null){
             initiateState(Store);
         }
-    }, [Store, Store.contentArray, Store.tokenArray])
+    }, [Store.contentArray])
+
+    useEffect(() => {
+        if(Store.tst === null){
+            createSuggestionEngine();
+        }
+    }, [Store.tst]);
+
+    const createSuggestionEngine = () => {
+        Store.tst = new TST();
+        for(var key in vocabulary){
+            for(var word of vocabulary[key]){
+                Store.tst.insert(word, key);
+            }
+        }
+    }
 
     document.onselectionchange = () => {
         if(window.getSelection().toString().length > 0){
             setSelected(true);
-            console.log(window.getSelection())
             document.getElementById("editor_code_wrapper").focus();
         }
     }
@@ -157,7 +175,6 @@ const Editor = () => {
                             if(count % Store.tabWidth === 0) count -= 4;
                             else count = count - (count % Store.tabWidth);
                             s = " ".repeat(count);
-                            console.log(count);
                             Store.tokenArray[line] = tokenizer.tokenize(s + content);
                             Store.contentArray[line] = s + content;
                         }
@@ -169,7 +186,6 @@ const Editor = () => {
                     }
                     else{
                         // Tab TO INDENT SELECTION
-                        console.log(selection);
                         let anchor_line = parseInt(selection.anchorNode.parentElement.parentElement.dataset.line);
                         let focus_line = parseInt(selection.focusNode.parentElement.parentElement.dataset.line);
                         let focus_index = parseInt(selection.focusNode.parentElement.dataset.index);
@@ -188,8 +204,6 @@ const Editor = () => {
                             Store.tokenArray[line] = tokenizer.tokenize(s + Store.contentArray[line]);
                             Store.contentArray[line] = s + Store.contentArray[line];
                         }
-    
-                        console.log(Store.contentArray[focus_line], focus_line);
         
                         Store.setCursorLine(focus_line);
                         Store.setCursorIndex(i2 + Store.tabWidth);
@@ -302,6 +316,7 @@ const Editor = () => {
             let search = document.getElementById('text_search');
             search.classList.remove('text_search_animation_rev');
             search.classList.add('text_search_animation');
+            setSuggestions([]);
         }
         else if(key === 27){
             // ESC
@@ -320,6 +335,8 @@ const Editor = () => {
             let search = document.getElementById('text_search');
             search.classList.remove('text_search_animation');
             search.classList.add('text_search_animation_rev');
+
+            setSuggestions([]);
         }
         else if(key === 83 && e.ctrlKey){
             // Ctrl + S FOR SAVE
@@ -342,30 +359,27 @@ const Editor = () => {
             Store.setCursorLine(0);
             Store.setCursorLine(0);
         }
-        else if(key === 46 || key === 8){
-            /*if(selected){
-                let selection = window.getSelection();
-                let anchor_line = parseInt(selection.anchorNode.parentElement.parentElement.dataset.line);
-                let anchor_index = parseInt(selection.anchorNode.parentElement.dataset.index);
-                let anchor_offset = selection.anchorOffset;
-                let focus_line = parseInt(selection.focusNode.parentElement.parentElement.dataset.line);
-                let focus_index = parseInt(selection.focusNode.parentElement.dataset.index);
-                let focus_offset = selection.focusOffset;
-
-                let i1 = 0;
-                for(let i = 0; i < anchor_index - 1; i++){
-                    i1 += Store.tokenArray[anchor_line][i][0].length;
-                }
-                i1 += anchor_offset;
-
-                let i2 = 0;
-                for(let i = 0; i < focus_index; i++){
-                    i2 += Store.tokenArray[focus_line][i][0];
-                }
-                i2 += focus_offset;
-
-                clearSelection(anchor_line, i1, focus_line, i2);
-            }*/
+        else if(key === 32 && e.ctrlKey){
+            // Ctrl + Space FOR SUGGESTION
+            e.preventDefault();
+            e.stopPropagation();
+            var index = 0, l = 0, line = Store.cursorLine;
+            while(l < Store.cursorIndex){
+                l += Store.tokenArray[line][index][0].length;
+                index += 1;
+            }
+            index -= 1;
+            var offset = Store.tokenArray[line][index][0].length - (l - Store.cursorIndex);
+            var word = Store.tokenArray[line][index][0].slice(0, offset);
+            
+            if(Store.tst === null){
+                createSuggestionEngine();
+            }
+            let matches = Store.tst.partialSearch(word);
+            setSuggestions(matches);
+            let elem = document.getElementById('suggestion_container');
+            elem.style.top = (Store.lineHeight * (line + 1)) + "px";
+            elem.style.left = document.getElementById('edit_textarea').style.left;
         }
     }
 
@@ -397,13 +411,15 @@ const Editor = () => {
                     onCut={cutToClipboard} 
                     onKeyDown={keyHandler}
                 >
+                    <Suggestion suggestions={suggestions} />
                     <TextSearch />
-                    <CodeInput />
+                    <CodeInput setSuggestions={setSuggestions} />
                     {lines.map((val, index) => {
                         return (
                             <CodeLine 
                                 key={index}
                                 line={index}
+                                setSuggestions={setSuggestions}
                             />
                         )
                     })}

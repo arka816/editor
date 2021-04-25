@@ -6,7 +6,7 @@ const tokenizer = require("../engine/" + language + "/tokenizer.js");
 const dualPunctuators = ["(", "{", "["];
 const dualPunctuatorsCounterpart = [")", "}", "]"];
 
-const CodeInput = () => {
+const CodeInput = ({setSuggestions}) => {
     const Store = Container.useContainer();
 	const [stringMode, setStringMode] = useState(false);
     const [charMode, setCharMode] = useState(false);
@@ -278,6 +278,7 @@ const CodeInput = () => {
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck="false"
+			onFocus={() => setSuggestions([])}
             onInput={inputHandler}
             onKeyDown={keyHandler}
 			onPaste={pasteHandler}

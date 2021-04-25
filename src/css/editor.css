@@ -229,3 +229,25 @@ svg{
     top: 0;
     right: 0;
 }
+
+#suggestion_container{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3000;
+    display: inline-flex;
+    flex-direction: column;
+    min-width: 140px;
+    max-height: 200px;
+    overflow-y: scroll;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+#suggestion_container span{
+    font-size: 14px;
+    text-align: left;
+    padding: 4px;
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(60, 60, 60);
+    cursor: pointer;
+}

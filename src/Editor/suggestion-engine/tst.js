@@ -30,7 +30,7 @@ class TST{
 				if(curr.right === null) curr.right = new Node(l)
 				curr = curr.right
 			}
-			else if(l == curr.val){
+			else if(l === curr.val){
 				if (index + 1 === word.length){
 					if(!curr.end) this.vol ++;
 					curr.end = true;
@@ -48,17 +48,17 @@ class TST{
 	search(word){
 		var curr = this.root, index = 0;
 		while(index < word.length){
-			if(curr === null) return False;
+			if(curr === null) return false;
 			let l = word[index];
 			if(l < curr.val) curr = curr.left;
-			else if(l > curr.val) = curr.right;
+			else if(l > curr.val) curr = curr.right;
 			else if(l === curr.val){
 				if(index + 1 === word.length && curr.end) return true;
 				curr = curr.equal;
 				index += 1;
 			}
 		}
-		return False;
+		return false;
 	}
 
 	traverseRecursive(curr, l, word){
@@ -84,7 +84,7 @@ class TST{
 			let l = prefix[index];
 			if(l < curr.val) curr = curr.left;
 			if(l > curr.val) curr = curr.right;
-			if(l == curr.val){
+			if(l === curr.val){
 				if(index + 1 === prefix.length){
 					end = curr;
 					break;
@@ -95,8 +95,10 @@ class TST{
 		}
 
 		if(end === null) return [];
-		let matches = self.traverse(end.equal);
+		let matches = this.traverse(end.equal);
 		matches = matches.map(i => prefix + i);
 		return matches;
 	}
 }
+
+export default TST;

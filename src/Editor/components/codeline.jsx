@@ -1,8 +1,8 @@
 import React from 'react';
-import CodeSpan from "./codespan";
+import CodeSpan from "./codespan.jsx";
 import Container from '../state/state.js';
 
-const Codeline = ({line}) => {
+const Codeline = ({line, setSuggestions}) => {
     const Store = Container.useContainer();
     const findWidthofChar = (c) => {
         c = c.replaceAll(" ", "\u00a0");
@@ -12,7 +12,8 @@ const Codeline = ({line}) => {
         return width;
     }
     const focusLine = () => {
-        Store.setCursorLine(line);
+        if(line !== Store.cursorLine) setSuggestions([]);
+        Store.setLine(line);
         Store.setCursorIndex(Store.contentArray[line].length);
         Store.setCursorOffset(findWidthofChar(Store.contentArray[line]));
         document.getElementById("edit_textarea").focus();
@@ -36,6 +37,7 @@ const Codeline = ({line}) => {
                             code={value[0]}
                             category={value[1]}
                             line={line}
+                            setSuggestions={setSuggestions}
                         />
                     ))
                 )

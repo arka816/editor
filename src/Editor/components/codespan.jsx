@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../state/state.js';
 
-const CodeSpan = ({code, category, line, index}) => {
+const CodeSpan = ({code, category, line, index, setSuggestions}) => {
     const Store = Container.useContainer();
     code = code.replaceAll(" ", "\u00a0");
     var colorCode = {
@@ -41,6 +41,7 @@ const CodeSpan = ({code, category, line, index}) => {
         x = e.clientX - e.target.getBoundingClientRect().left;
         e.stopPropagation();
         e.preventDefault();
+        if(line !== Store.cursorLine) setSuggestions([]);
         Store.setCursorLine(line);
         var l = Store.tokenArray[line].slice(0, index).reduce(function(a, b){
             if(Array.isArray(a)) return a[0].length + b[0].length;

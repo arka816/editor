@@ -10,8 +10,32 @@ function useStore(){
     const [cursorLine, setCursorLine] = useState(0);
     const [cursorIndex, setCursorIndex] = useState(0);
     const [cursorOffset, setCursorOffset] = useState(0);
+    const [tst, _] = useState(null);
 
-    return {tabWidth, setTabWidth, lineHeight, setLineHeight, lineCount, setLineCount, cursorOffset, setCursorOffset, contentArray, setContentArray, tokenArray, setTokenArray, cursorLine, setCursorLine, cursorIndex, setCursorIndex};
+    const setLine = (line) => {
+        setCursorLine(line);
+    }
+
+    return {
+        tabWidth, 
+        setTabWidth, 
+        lineHeight, 
+        setLineHeight, 
+        lineCount, 
+        setLineCount, 
+        cursorOffset, 
+        setCursorOffset, 
+        contentArray, 
+        setContentArray, 
+        tokenArray, 
+        setTokenArray, 
+        cursorLine, 
+        setCursorLine, 
+        cursorIndex, 
+        setCursorIndex,
+        tst,
+        setLine
+    };
 }
 
 let Container = createContainer(useStore);
