@@ -1,0 +1,1078 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "c:\\Users\\arkap\\OneDrive\\Documents\\summer 21\\editor",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2021-04-21 18:06:22",
+            "filesum": 49,
+            "codesum": 18419,
+            "commentsum": 122,
+            "blanksum": 162,
+            "statistics": {
+                ".js": {
+                    "code": 1050,
+                    "comment": 54,
+                    "blank": 101
+                },
+                ".css": {
+                    "code": 188,
+                    "comment": 1,
+                    "blank": 14
+                },
+                ".svg": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".json": {
+                    "code": 17094,
+                    "comment": 0,
+                    "blank": 4
+                },
+                ".md": {
+                    "code": 38,
+                    "comment": 12,
+                    "blank": 32
+                },
+                ".txt": {
+                    "code": 6,
+                    "comment": 54,
+                    "blank": 6
+                },
+                ".html": {
+                    "code": 19,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".map": {
+                    "code": 5,
+                    "comment": 0,
+                    "blank": 0
+                },
+                "": {
+                    "code": 18,
+                    "comment": 1,
+                    "blank": 5
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "build\\asset-manifest.json"
+                },
+                {
+                    "filename": "build\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\index.html"
+                },
+                {
+                    "filename": "build\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "build\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "build\\robots.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\css\\main.604ce30d.chunk.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\css\\main.604ce30d.chunk.css.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\2.1422a9d8.chunk.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 0,
+                    "comment": 52,
+                    "filename": "build\\static\\js\\2.1422a9d8.chunk.js.LICENSE.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\2.1422a9d8.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\3.07f847be.chunk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\3.07f847be.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\main.b31b5309.chunk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\main.b31b5309.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\runtime-main.e9613b10.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\runtime-main.e9613b10.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 16971,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "filename": "public\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 32,
+                    "code": 38,
+                    "comment": 12,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\App.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\App.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\App.test.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 176,
+                    "comment": 0,
+                    "filename": "src\\css\\editor.css"
+                },
+                {
+                    "blank": 13,
+                    "code": 230,
+                    "comment": 11,
+                    "filename": "src\\Editor\\components\\codeinput.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\codeline.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\codespan.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\linemarker.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 92,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\textsearch.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\Editor\\container.js"
+                },
+                {
+                    "blank": 22,
+                    "code": 159,
+                    "comment": 3,
+                    "filename": "src\\Editor\\editor.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 26,
+                    "comment": 1,
+                    "filename": "src\\Editor\\engine\\c\\classifier.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\Editor\\engine\\c\\language.json"
+                },
+                {
+                    "blank": 18,
+                    "code": 246,
+                    "comment": 28,
+                    "filename": "src\\Editor\\engine\\c\\tokenizer.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\Editor\\state\\state.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 94,
+                    "comment": 0,
+                    "filename": "src\\Editor\\suggestion-engine\\tst.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\index.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 3,
+                    "filename": "src\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src\\logo.svg"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\reportWebVitals.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src\\setupTests.js"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2021-04-22 21:42:04",
+            "filesum": 49,
+            "codesum": 18545,
+            "commentsum": 125,
+            "blanksum": 185,
+            "statistics": {
+                ".js": {
+                    "code": 1175,
+                    "comment": 57,
+                    "blank": 124
+                },
+                ".svg": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".css": {
+                    "code": 188,
+                    "comment": 1,
+                    "blank": 14
+                },
+                ".json": {
+                    "code": 17094,
+                    "comment": 0,
+                    "blank": 4
+                },
+                ".md": {
+                    "code": 38,
+                    "comment": 12,
+                    "blank": 32
+                },
+                ".txt": {
+                    "code": 6,
+                    "comment": 54,
+                    "blank": 6
+                },
+                ".html": {
+                    "code": 19,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".map": {
+                    "code": 5,
+                    "comment": 0,
+                    "blank": 0
+                },
+                "": {
+                    "code": 19,
+                    "comment": 1,
+                    "blank": 5
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 5,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "build\\asset-manifest.json"
+                },
+                {
+                    "filename": "build\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\index.html"
+                },
+                {
+                    "filename": "build\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "build\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "build\\robots.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\css\\main.604ce30d.chunk.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\css\\main.604ce30d.chunk.css.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\2.bdca4d2f.chunk.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 0,
+                    "comment": 52,
+                    "filename": "build\\static\\js\\2.bdca4d2f.chunk.js.LICENSE.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\2.bdca4d2f.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\3.07f847be.chunk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\3.07f847be.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\main.21259fe5.chunk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\main.21259fe5.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\runtime-main.e9613b10.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\runtime-main.e9613b10.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 16971,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "filename": "public\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 32,
+                    "code": 38,
+                    "comment": 12,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\App.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\App.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\App.test.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 176,
+                    "comment": 0,
+                    "filename": "src\\css\\editor.css"
+                },
+                {
+                    "blank": 16,
+                    "code": 244,
+                    "comment": 11,
+                    "filename": "src\\Editor\\components\\codeinput.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\codeline.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\codespan.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\linemarker.js"
+                },
+                {
+                    "blank": 25,
+                    "code": 129,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\textsearch.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\Editor\\container.js"
+                },
+                {
+                    "blank": 31,
+                    "code": 227,
+                    "comment": 6,
+                    "filename": "src\\Editor\\editor.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 26,
+                    "comment": 1,
+                    "filename": "src\\Editor\\engine\\c\\classifier.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\Editor\\engine\\c\\language.json"
+                },
+                {
+                    "blank": 18,
+                    "code": 251,
+                    "comment": 28,
+                    "filename": "src\\Editor\\engine\\c\\tokenizer.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\Editor\\state\\state.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 94,
+                    "comment": 0,
+                    "filename": "src\\Editor\\suggestion-engine\\tst.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\index.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 3,
+                    "filename": "src\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src\\logo.svg"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\reportWebVitals.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src\\setupTests.js"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2021-04-24 21:41:29",
+            "filesum": 49,
+            "codesum": 18715,
+            "commentsum": 130,
+            "blanksum": 211,
+            "statistics": {
+                ".js": {
+                    "code": 1328,
+                    "comment": 62,
+                    "blank": 149
+                },
+                ".svg": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".css": {
+                    "code": 205,
+                    "comment": 1,
+                    "blank": 15
+                },
+                ".json": {
+                    "code": 17094,
+                    "comment": 0,
+                    "blank": 4
+                },
+                ".md": {
+                    "code": 38,
+                    "comment": 12,
+                    "blank": 32
+                },
+                ".txt": {
+                    "code": 6,
+                    "comment": 54,
+                    "blank": 6
+                },
+                ".html": {
+                    "code": 19,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".map": {
+                    "code": 5,
+                    "comment": 0,
+                    "blank": 0
+                },
+                "": {
+                    "code": 19,
+                    "comment": 1,
+                    "blank": 5
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 5,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "build\\asset-manifest.json"
+                },
+                {
+                    "filename": "build\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\index.html"
+                },
+                {
+                    "filename": "build\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "build\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "build\\robots.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\css\\main.604ce30d.chunk.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\css\\main.604ce30d.chunk.css.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\2.bdca4d2f.chunk.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 0,
+                    "comment": 52,
+                    "filename": "build\\static\\js\\2.bdca4d2f.chunk.js.LICENSE.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\2.bdca4d2f.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\3.07f847be.chunk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\3.07f847be.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\main.eecc0d11.chunk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\main.eecc0d11.chunk.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "build\\static\\js\\runtime-main.e9613b10.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "build\\static\\js\\runtime-main.e9613b10.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 16971,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "filename": "public\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 32,
+                    "code": 38,
+                    "comment": 12,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\App.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\App.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\App.test.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 193,
+                    "comment": 0,
+                    "filename": "src\\css\\editor.css"
+                },
+                {
+                    "blank": 17,
+                    "code": 256,
+                    "comment": 11,
+                    "filename": "src\\Editor\\components\\codeinput.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\codeline.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\codespan.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\linemarker.js"
+                },
+                {
+                    "blank": 25,
+                    "code": 129,
+                    "comment": 0,
+                    "filename": "src\\Editor\\components\\textsearch.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\Editor\\container.js"
+                },
+                {
+                    "blank": 55,
+                    "code": 340,
+                    "comment": 11,
+                    "filename": "src\\Editor\\editor.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 26,
+                    "comment": 1,
+                    "filename": "src\\Editor\\engine\\c\\classifier.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\Editor\\engine\\c\\language.json"
+                },
+                {
+                    "blank": 18,
+                    "code": 276,
+                    "comment": 28,
+                    "filename": "src\\Editor\\engine\\c\\tokenizer.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\Editor\\state\\state.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 94,
+                    "comment": 0,
+                    "filename": "src\\Editor\\suggestion-engine\\tst.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\index.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 3,
+                    "filename": "src\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src\\logo.svg"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\reportWebVitals.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src\\setupTests.js"
+                }
+            ]
+        }
+    ]
+}
